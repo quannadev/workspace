@@ -1,0 +1,5 @@
+.env
+*.config
+*.conf
+/data/
+/.idea/
