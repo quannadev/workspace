@@ -2,6 +2,7 @@
 *.config
 *.conf
 /data/
-/.idea/
 /gapo_project
 *.sh
+/gapo_project/
+/.idea/
