@@ -1,0 +1,7 @@
+.env
+*.config
+*.conf
+/data/
+/.idea/
+/gapo_project
+*.sh

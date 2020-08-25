@@ -1,0 +1,51 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    volumes:
+      - './data/mongo:/data'
+    ports:
+      - '27001:27001'
+    restart: always
+    networks:
+      - workspace
+  redis:
+    container_name: redis
+    image: 'library/redis:alpine'
+    command:
+      - redis-server
+      - '--appendonly'
+      - 'yes'
+    ports:
+      - '6379:6379'
+    networks:
+      - workspace
+    restart: always
+  rabbitmq:
+    container_name: rabbitmq
+    image: 'rabbitmq:alpine'
+    environment:
+      - RABBITMQ_DEFAULT_USER=gapo_queue
+      - RABBITMQ_DEFAULT_PASS=gapo_queue
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    networks:
+      - workspace
+    restart: always
+  mysql:
+    container_name: mysql
+    image: 'mariadb:latest'
+    volumes:
+      - './data/mariadb:/var/lib/mysql'
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_ROOT_PASSWORD=anhquan123
+      - MYSQL_DATABASE=quanna
+    ports:
+      - '3306:3306'
+    networks:
+      - workspace
+    restart: always
+networks:
+  workspace: null
